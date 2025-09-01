@@ -2,6 +2,9 @@ package br.com.rhssolutions.especiesAPI.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Data
 @Entity(name = "tb_especie")
@@ -27,5 +30,9 @@ public class Especie {
     @Enumerated(EnumType.STRING)
     @Column(name = "codigo_iso")
     private CodigoIso codigoIso;
+
+    @CreationTimestamp
+    @Column(name = "data_criacao")
+    private LocalDateTime dataCriacao;
 
 }

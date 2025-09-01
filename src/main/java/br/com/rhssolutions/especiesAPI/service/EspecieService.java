@@ -21,6 +21,16 @@ public class EspecieService {
                 .stream().map(EspecieMapper::toDomain).toList();
         especieRepository.saveAll(especies);
         return especies;
-
     }
+
+    public List<Especie> listarEspecies() {
+        return especieRepository.findAll();
+    }
+
+    public Especie buscarEspecieAleatoria() {
+        var especie = EspecieMapper.toDomain(aesClient.getRandomEspecie());
+        especieRepository.save(especie);
+        return especie;
+    }
+
 }
