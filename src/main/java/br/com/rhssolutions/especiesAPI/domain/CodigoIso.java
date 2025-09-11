@@ -1,8 +1,9 @@
 package br.com.rhssolutions.especiesAPI.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.Getter;
 
+@Getter
 public enum CodigoIso {
 
     CN("China"),
@@ -53,10 +54,6 @@ public enum CodigoIso {
         this.pais = pais;
     }
 
-    public String getPais() {
-        return pais;
-    }
-
     @JsonCreator
     public static CodigoIso fromString(String value) {
         for (CodigoIso codigoIso : CodigoIso.values()) {
@@ -65,11 +62,6 @@ public enum CodigoIso {
             }
         }
         return UNKNOWN;
-    }
-
-    @JsonValue
-    public String getValue() {
-        return this.name();
     }
 
 }

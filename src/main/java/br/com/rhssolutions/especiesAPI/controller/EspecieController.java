@@ -1,9 +1,8 @@
 package br.com.rhssolutions.especiesAPI.controller;
 
 import br.com.rhssolutions.especiesAPI.domain.Especie;
-import br.com.rhssolutions.especiesAPI.service.EspecieService;
+import br.com.rhssolutions.especiesAPI.service.impl.EspecieServiceImpl;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,9 +13,9 @@ import java.util.List;
 @RequestMapping("/especies")
 public class EspecieController {
 
-    private final EspecieService especieService;
+    private final EspecieServiceImpl especieService;
 
-    public EspecieController(EspecieService especieService) {
+    public EspecieController(EspecieServiceImpl especieService) {
         this.especieService = especieService;
     }
 
@@ -30,12 +29,6 @@ public class EspecieController {
     public ResponseEntity<Especie> buscarEspecieAleatoria() {
         var especie = especieService.buscarEspecieAleatoria();
         return ResponseEntity.ok(especie);
-    }
-
-    @GetMapping("/listar")
-    public ResponseEntity<List<Especie>> listarEspecies() {
-        List<Especie> especies = especieService.listarEspecies();
-        return ResponseEntity.ok(especies);
     }
 
 

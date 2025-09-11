@@ -1,4 +1,4 @@
-package br.com.rhssolutions.especiesAPI.client;
+package br.com.rhssolutions.especiesAPI.service.client;
 
 import br.com.rhssolutions.especiesAPI.dto.EspecieDTO;
 import org.springframework.cloud.openfeign.FeignClient;
