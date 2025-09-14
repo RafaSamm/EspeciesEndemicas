@@ -30,8 +30,10 @@ public class GlobalExceptionHandler {
                         "timestamp", LocalDateTime.now(),
                         "status", HttpStatus.INTERNAL_SERVER_ERROR.value(),
                         "error", "Internal Server Error",
-                        "message", ex.getMessage()
+                        "message", "Erro inesperado de servidor, consulte o log: " + ex.getMessage()
                 )
         );
     }
+
+
 }
