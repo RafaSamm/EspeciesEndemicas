@@ -11,6 +11,7 @@ public class EspecieMapper {
         especie.setNomeComum(dto.getCommonName());
         especie.setNomeCientifico(dto.getScientificName());
         especie.setGrupo(dto.getGroup());
+        especie.setImagem(dto.getImage());
 
         //Converter o ISO code para o enum
         especie.setCodigoIso(CodigoIso.fromString(dto.getIsoCode())); //String para Enum
@@ -35,7 +36,7 @@ public class EspecieMapper {
             case "LC" -> Status.POUCO_CONCERNS;
             case "DD" -> Status.DADOS_DEFICIENTES;
             case "NE" -> Status.NAO_AVALIADO;
-            default -> throw new IllegalArgumentException("Status de conservação inválido: " + valor);
+            default -> throw new ExceptionMapperDTO("Status de conservação inválido: " + valor);
         };
 
     }

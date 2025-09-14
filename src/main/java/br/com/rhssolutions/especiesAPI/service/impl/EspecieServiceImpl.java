@@ -29,6 +29,7 @@ public class EspecieServiceImpl implements EspecieService {
         especies.stream()
                 .filter(especie -> !especieRepository.existsByNomeCientifico(especie.getNomeCientifico()))
                 .forEach(especieRepository::save);
+
         return especies;
     }
 

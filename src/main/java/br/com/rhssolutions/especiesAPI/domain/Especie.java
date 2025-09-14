@@ -31,6 +31,9 @@ public class Especie {
     @Column(name = "codigo_iso")
     private CodigoIso codigoIso;
 
+    @Column(name = "imagem")
+    private String imagem;
+
     @CreationTimestamp
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
