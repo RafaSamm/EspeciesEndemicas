@@ -52,7 +52,7 @@ src/main/java/br/com/rhssolutions/especiesAPI/
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/SEU_USUARIO/EspeciesEndemicas.git
+   git clone https://github.com/RafaSamm/EspeciesEndemicas.git
    cd EspeciesEndemicas
    
 2. Compile e rode o projeto:
