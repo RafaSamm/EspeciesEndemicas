@@ -2,12 +2,13 @@ package br.com.rhssolutions.especiesAPI.service.impl;
 
 import br.com.rhssolutions.especiesAPI.domain.Especie;
 import br.com.rhssolutions.especiesAPI.dto.EspecieMapper;
+import br.com.rhssolutions.especiesAPI.exception.EspecieNotFoundException;
 import br.com.rhssolutions.especiesAPI.repository.EspecieRepository;
 import br.com.rhssolutions.especiesAPI.service.EspecieService;
 import br.com.rhssolutions.especiesAPI.service.client.AesClient;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,40 +25,35 @@ public class EspecieServiceImpl implements EspecieService {
         List<Especie> especies = aesClient.getAllEspecies()
                 .stream().map(EspecieMapper::toDomain).toList();
         especieRepository.saveAll(especies);
+
+        especies.stream()
+                .filter(especie -> !especieRepository.existsByNomeCientifico(especie.getNomeCientifico()))
+                .forEach(especieRepository::save);
         return especies;
     }
 
-
-    @Transactional(rollbackOn = Exception.class)
+    @Transactional(rollbackFor = Exception.class) //Caso de falha na chamada da API externa - rollback automático
     public Especie buscarEspecieAleatoria() {
         var especie = EspecieMapper.toDomain(aesClient.getRandomEspecie());
-        especieRepository.save(especie);
-        return especie;
+        return especieRepository.save(especie);
     }
 
 
     @Override
-    @Transactional(rollbackOn = Exception.class)
+    @Transactional(readOnly = true)  //evitando locks(travas no banco) desnecessários
     public Iterable<Especie> listaTodasAsEspecies() {
         var especies = especieRepository.findAll();
         if (especies.iterator().hasNext()) {
             return especies;
         } else {
-            throw new RuntimeException("Nenhuma especie encontrada");
+            throw new EspecieNotFoundException("Nao ha especies cadastradas");
         }
-
-
     }
 
     @Override
-    @Transactional(rollbackOn = Exception.class)
+    @Transactional(readOnly = true)
     public Optional<Especie> buscarEspeciePorId(Long id) {
-        var especie = especieRepository.findById(id);
-        if (especie.isPresent()) {
-            return especie;
-        } else {
-            throw new RuntimeException("Especie não encontrada");
-        }
-
+        return Optional.ofNullable(especieRepository.findById(id)
+                .orElseThrow(() -> new EspecieNotFoundException("Especie nao encontrada com o id: " + id)));
     }
 }

@@ -48,7 +48,7 @@ public enum CodigoIso {
     CV("Cabo Verde"),
     UNKNOWN("País desconhecido");
 
-    private String pais;
+    private final String pais;
 
     CodigoIso(String pais) {
         this.pais = pais;
