@@ -23,9 +23,8 @@ public class EspecieMapper {
     }
 
     private static Status mapaStatus(String valor) {
-        if (valor == null) {
-            return null;
-        }
+        if (valor == null) return null;
+
         return switch (valor) {
             case "VU" -> Status.VULNERAVEL;
             case "EX" -> Status.EXTINTO;

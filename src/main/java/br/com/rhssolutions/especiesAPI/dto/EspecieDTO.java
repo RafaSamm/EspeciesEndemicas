@@ -8,7 +8,6 @@ public class EspecieDTO {
 
     //Da API externa
 
-    @JsonProperty("image")
     private String image;
 
     private Long id;
