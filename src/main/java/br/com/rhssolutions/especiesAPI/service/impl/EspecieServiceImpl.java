@@ -30,7 +30,9 @@ public class EspecieServiceImpl implements EspecieService {
                 .filter(especie -> !especieRepository.existsByNomeCientifico(especie.getNomeCientifico()))
                 .forEach(especieRepository::save);
 
-        return especies;
+        return especieRepository.findAll();
+
+
     }
 
     @Transactional(rollbackFor = Exception.class) //Caso de falha na chamada da API externa - rollback automático

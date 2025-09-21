@@ -8,8 +8,6 @@ public class EspecieDTO {
 
     //Da API externa
 
-    private String image;
-
     private Long id;
 
     @JsonProperty("common_name")
@@ -25,6 +23,11 @@ public class EspecieDTO {
 
     @JsonProperty("iso_code")
     private String isoCode;
+
+    private String image;
+
+    @JsonProperty("country")
+    private PaisDTO country;
 
 
 }

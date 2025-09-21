@@ -34,6 +34,10 @@ public class Especie {
     @Column(name = "imagem")
     private String imagem;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pais_id")
+    private Pais pais;
+
     @CreationTimestamp
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;

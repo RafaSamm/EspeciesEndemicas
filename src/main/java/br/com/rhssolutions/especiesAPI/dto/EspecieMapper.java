@@ -2,6 +2,7 @@ package br.com.rhssolutions.especiesAPI.dto;
 
 import br.com.rhssolutions.especiesAPI.domain.CodigoIso;
 import br.com.rhssolutions.especiesAPI.domain.Especie;
+import br.com.rhssolutions.especiesAPI.domain.Pais;
 import br.com.rhssolutions.especiesAPI.domain.Status;
 
 public class EspecieMapper {
@@ -19,8 +20,20 @@ public class EspecieMapper {
         //Converter o status de conservação para o enum
         especie.setStatusConservacao(mapaStatus(dto.getConservationStatus()));
 
+        if (dto.getCountry() != null) {
+            especie.setPais(toDomainPais(dto.getCountry()));
+        }
+
         return especie;
     }
+
+    public static Pais toDomainPais(PaisDTO dto) {
+        var pais = new Pais();
+        pais.setNome(dto.getName());
+        pais.setIsoCode(dto.getIsoCode());
+        return pais;
+    }
+
 
     private static Status mapaStatus(String valor) {
         if (valor == null) return null;

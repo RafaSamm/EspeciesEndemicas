@@ -15,6 +15,6 @@ public interface AesClient {
     @GetMapping("/random")
     EspecieDTO getRandomEspecie();
 
-
-
+    @GetMapping("/country")
+    List<String> getAllCountries();
 }
