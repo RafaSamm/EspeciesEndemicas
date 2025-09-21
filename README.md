@@ -59,9 +59,14 @@ src/main/java/br/com/rhssolutions/especiesAPI/
    ```bash
    ./mvnw spring-boot:run
 
-3. Acesse a API em:
+3. Acesse a API localmente em:
    ```bash
    http://localhost:8080
+
+4. Ou acesse a API para testes já com deploy:
+   ```
+   https://especiesendemicas.onrender.com
+   ```
    
  ## 📡 Endpoints Principais
 
