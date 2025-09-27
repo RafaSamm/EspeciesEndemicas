@@ -11,7 +11,8 @@ O projeto foi construído aplicando **boas práticas de Clean Code e SOLID**, al
 - 🔄 **Sincronização de espécies** com a API externa (AES).  
 - 🎲 **Busca de espécie aleatória** diretamente da API externa.  
 - 📖 **Listagem de todas as espécies** cadastradas no banco de dados.  
-- 🔍 **Busca por ID** de espécie.  
+- 🔍 **Busca por ID** de espécie.
+- 🔍 **Busca/salva países** com a API externa (AES).
 - ➕ **Cadastro de novas espécies** no sistema. (em andamento) 
 - ✏️ **Atualização de espécies** existentes. (em andamento) 
 - ❌ **Exclusão de espécies** cadastradas. (em andamento)
@@ -24,6 +25,7 @@ O projeto foi construído aplicando **boas práticas de Clean Code e SOLID**, al
 src/main/java/br/com/rhssolutions/especiesAPI/
 │
 ├── controller/ # Endpoints REST
+├── doc/ # documentação da API
 ├── domain/ # Entidades do domínio
 ├── dto/ # Mapeamento entre entidades e DTOs
 ├── exception/ # Exceptions customizadas e handler global
@@ -86,6 +88,10 @@ src/main/java/br/com/rhssolutions/especiesAPI/
 🔍 Buscar espécie por ID
   ```
     GET /especies/{id}
+  ```
+🔄 Buscar e Salvar países
+  ```bash
+    POST /paises/sincronizar
   ```
 
 
