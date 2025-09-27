@@ -11,7 +11,8 @@ O projeto foi construído aplicando **boas práticas de Clean Code e SOLID**, al
 - 🔄 **Sincronização de espécies** com a API externa (AES).  
 - 🎲 **Busca de espécie aleatória** diretamente da API externa.  
 - 📖 **Listagem de todas as espécies** cadastradas no banco de dados.  
-- 🔍 **Busca por ID** de espécie.  
+- 🔍 **Busca por ID** de espécie.
+- 🔍 **Busca/salva países** com a API externa (AES).
 - ➕ **Cadastro de novas espécies** no sistema. (em andamento) 
 - ✏️ **Atualização de espécies** existentes. (em andamento) 
 - ❌ **Exclusão de espécies** cadastradas. (em andamento)
