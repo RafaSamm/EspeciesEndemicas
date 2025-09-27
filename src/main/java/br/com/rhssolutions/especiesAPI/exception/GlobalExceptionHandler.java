@@ -23,6 +23,18 @@ public class GlobalExceptionHandler {
         );
     }
 
+    @ExceptionHandler(PaisNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleNotFound(PaisNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                Map.of(
+                        "timestamp", LocalDateTime.now(),
+                        "status", HttpStatus.NOT_FOUND.value(),
+                        "error", "Not Found",
+                        "message", ex.getMessage()
+                )
+        );
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGeneric(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
