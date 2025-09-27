@@ -89,6 +89,10 @@ src/main/java/br/com/rhssolutions/especiesAPI/
   ```
     GET /especies/{id}
   ```
+🔄 Buscar e Salvar países
+  ```bash
+    POST /paises/sincronizar
+  ```
 
 
 
