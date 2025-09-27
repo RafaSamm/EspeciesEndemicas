@@ -25,6 +25,7 @@ O projeto foi construído aplicando **boas práticas de Clean Code e SOLID**, al
 src/main/java/br/com/rhssolutions/especiesAPI/
 │
 ├── controller/ # Endpoints REST
+├── doc/ # documentação da API
 ├── domain/ # Entidades do domínio
 ├── dto/ # Mapeamento entre entidades e DTOs
 ├── exception/ # Exceptions customizadas e handler global
