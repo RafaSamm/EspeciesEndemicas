@@ -22,23 +22,28 @@ public class EspecieServiceImpl implements EspecieService {
 
     @Transactional
     public List<Especie> sincronizarEspecies() {
-        List<Especie> especies = aesClient.getAllEspecies()
-                .stream().map(EspecieMapper::toDomain).toList();
-        especieRepository.saveAll(especies);
+        try {
+            List<Especie> especies = aesClient.getAllEspecies()
+                    .stream().map(EspecieMapper::toDomain).toList();
 
-        especies.stream()
-                .filter(especie -> !especieRepository.existsByNomeCientifico(especie.getNomeCientifico()))
-                .forEach(especieRepository::save);
+            especies.stream()
+                    .filter(especie -> !especieRepository.existsByNomeCientifico(especie.getNomeCientifico()))
+                    .forEach(especieRepository::save);
 
-        return especieRepository.findAll();
-
-
+            return especieRepository.saveAll(especies);
+        } catch (Exception e) {
+            throw new EspecieNotFoundException("Erro ao sincronizar especies");
+        }
     }
 
     @Transactional(rollbackFor = Exception.class) //Caso de falha na chamada da API externa - rollback automático
     public Especie buscarEspecieAleatoria() {
-        var especie = EspecieMapper.toDomain(aesClient.getRandomEspecie());
-        return especieRepository.save(especie);
+        try {
+            var especie = EspecieMapper.toDomain(aesClient.getRandomEspecie());
+            return especieRepository.save(especie);
+        } catch (Exception e) {
+            throw new EspecieNotFoundException("Erro ao buscar especie aleatoria");
+        }
     }
 
 

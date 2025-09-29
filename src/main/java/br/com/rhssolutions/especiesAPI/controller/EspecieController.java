@@ -1,7 +1,6 @@
 package br.com.rhssolutions.especiesAPI.controller;
 
 import br.com.rhssolutions.especiesAPI.domain.Especie;
-import br.com.rhssolutions.especiesAPI.domain.Pais;
 import br.com.rhssolutions.especiesAPI.service.impl.EspecieServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

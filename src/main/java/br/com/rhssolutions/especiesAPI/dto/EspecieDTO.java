@@ -8,8 +8,6 @@ public class EspecieDTO {
 
     //Da API externa
 
-    private Long id;
-
     @JsonProperty("common_name")
     private String commonName;
 
