@@ -3,6 +3,7 @@ package br.com.rhssolutions.especiesAPI.domain.pais;
 
 import br.com.rhssolutions.especiesAPI.dto.PaisDTO;
 import br.com.rhssolutions.especiesAPI.dto.PaisMapper;
+import br.com.rhssolutions.especiesAPI.exception.PaisNotFoundException;
 import br.com.rhssolutions.especiesAPI.repository.PaisRepository;
 import br.com.rhssolutions.especiesAPI.service.client.AesClient;
 import br.com.rhssolutions.especiesAPI.service.impl.PaisServiceImpl;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import static br.com.rhssolutions.especiesAPI.common.PaisFactory.sincronizaPaisValido;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -55,6 +57,20 @@ public class PaisServiceTest {
 
         verify(aesClient, times(1)).getAllCountries();
         verify(paisRepository, times(1)).saveAll(anyList());
+    }
+
+    @Test
+    public void sincronizarAPIInvalidaComPaises() {
+        when(aesClient.getAllCountries())
+                .thenThrow(new PaisNotFoundException("Não foi possível buscar os países na API externa"));
+
+        assertThatThrownBy( //Verifica se a exceção é lançada
+                () -> paisService.sincronizarPaises()
+        ).isInstanceOf(PaisNotFoundException.class)
+                .hasMessageContaining("Não foi possível buscar os países na API externa");
+
+
+        verify(paisRepository, never()).saveAll(anyList());
     }
 
 
