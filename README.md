@@ -48,7 +48,7 @@ src/main/java/br/com/rhssolutions/especiesAPI/
 - **Spring Web**
 - **Lombok**
 - **MySQL8**
-- **H2 Database** (por enquanto configurado)
+- **H2 Database** (para desenvolvimento local)
 - **Maven**
 - **Docker & Docker Compose**
 
