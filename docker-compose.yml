@@ -1,0 +1,36 @@
+services:
+  mysqldb:
+    image: mysql:8.3
+    container_name: mysql-especiesapi
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: especies_db
+      MYSQL_USER: developer
+      MYSQL_PASSWORD: 1212
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql #  Monta o arquivo init.sql
+
+  especiesapi: # Nome do serviço
+    build: . # Constrói a imagem a partir do Dockerfile
+    container_name: especiesapi # Nome do container
+    restart: unless-stopped # Reinicia o container automaticamente
+    depends_on:
+      - mysqldb
+    ports:
+      - "8081:8080" # Mapeia a porta 8080 do container para a porta 8081 do PC
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/especies_db?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: developer
+      SPRING_DATASOURCE_PASSWORD: 1212
+
+volumes:
+  mysql_data:    # Volume declarado aqui
+
+
+
+
