@@ -47,12 +47,14 @@ src/main/java/br/com/rhssolutions/especiesAPI/
 - **Spring Data JPA**
 - **Spring Web**
 - **Lombok**
+- **MySQL8**
 - **H2 Database** (por enquanto configurado)
 - **Maven**
+- **Docker & Docker Compose**
 
 ---
 
-## ▶️ Como Executar
+## ▶️ Como Executar Localmente (sem Docker)
 
 1. Clone este repositório:
    ```bash
@@ -67,10 +69,29 @@ src/main/java/br/com/rhssolutions/especiesAPI/
    ```bash
    http://localhost:8080
 
-4. Ou acesse a API para testes já com deploy:
+4. Para testes com deploy remoto:
    ```
    https://especiesendemicas.onrender.com
    ```
+
+
+## 🐳 Como Executar com Docker e Docker Compose
+1. Certifique-se de ter Docker e Docker Compose instalados.
+2. Build e start dos containers:
+```
+docker-compose up --build
+```
+3. Serviços disponíveis:
+
+| Serviço     | URL                     | Porta |
+| ----------- | ----------------------- | ----- |
+| MySQL DB    | localhost (Docker host) | 3307  |
+| EspeciesAPI | localhost (Docker host) | 8080  |
+
+**Observação: Ao usar o host do container MySQL (mysqldb), configure o SPRING_DATASOURCE_URL no application-prod.properties como:**
+```
+spring.datasource.url=jdbc:mysql://mysqldb:3306/especies_db?useSSL=false&serverTimezone=UTC
+```
    
  ## 📡 Endpoints Principais
 
